@@ -10,15 +10,18 @@ class ChessBoard
 		@h = 7
 		@oldX  = nil
 		@oldY  = nil
+		@x = @d
+		@y =  4
 		@board = []
 		8.times { @board << Array.new(8, ".") }
+		mark
 	end
 
-	def mark(x, y)
+	def mark
 		@board[@oldY][@oldX] = "o" if !@oldY.nil?
-		@board[y][x]       = "X"
-		@oldX = x
-		@oldY = y
+		@board[@y][@x]       = "X"
+		@oldX = @x
+		@oldY = @y
 	end
 
 	def show_board
