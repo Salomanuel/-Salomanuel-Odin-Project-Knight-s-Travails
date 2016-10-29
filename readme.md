@@ -7,10 +7,10 @@ Now you're a pro with DFS and BFS. Let's try using our search algorithms on a re
 
 For this project, you'll need to use a data structure that's similar (but not identical) to a binary tree. For a summary of a few different examples, reference [this article](https://www.khanacademy.org/computing/computer-science/algorithms/graph-representation/a/describing-graphs).
 
-A knight in chess can move to any square on the standard 8x8 chess board from any other square on the board, given enough turns (don't believe it? See (this animation)[http://upload.wikimedia.org/wikipedia/commons/c/ca/Knights-Tour-Animation.gif].) Its basic move is two steps forward and one step to the side. It can face any direction.
+A knight in chess can move to any square on the standard 8x8 chess board from any other square on the board, given enough turns (don't believe it? See [this animation]([http://upload.wikimedia.org/wikipedia/commons/c/ca/Knights-Tour-Animation.gif).) Its basic move is two steps forward and one step to the side. It can face any direction.
 
 All the possible places you can end up after one move look like this:
-![knight's moves](blob:http://www.theodinproject.com/0b72a7f4-9c38-43e5-857e-5259fa8a1fcd "knight's moves")([link]([knight's moves](blob:http://www.theodinproject.com/0b72a7f4-9c38-43e5-857e-5259fa8a1fcd "knight's moves")))
+![image of knight's moves](blob:http://www.theodinproject.com/0b72a7f4-9c38-43e5-857e-5259fa8a1fcd "knight's moves")([link](blob:http://www.theodinproject.com/0b72a7f4-9c38-43e5-857e-5259fa8a1fcd "knight's moves"))
 
 ###Your Task
 
@@ -20,7 +20,7 @@ You can think of the board as having 2-dimensional coordinates. Your function wo
 
 * `knight_moves([0,0],[1,2]) == [[0,0],[1,2]]`
 * `knight_moves([0,0],[3,3]) == [[0,0],[1,2],[3,3]]`
-* `knight_moves([3,3],[0,0]) == [[3,3],[1,2],[0,0]]`
+* `knight_moves([3,3],[0,0]) == [[3,3],[1,2],[0,0]]`  
 
 1. Put together a script that creates a game board and a knight.
 2. Treat all possible moves the knight could make as children in a tree. Don't allow any moves to go off the board.
