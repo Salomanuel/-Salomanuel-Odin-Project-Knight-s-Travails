@@ -3,9 +3,8 @@ class ChessBoard
 		letters
 		@oldX  = nil
 		@oldY  = nil
-		@x     = @d
-		@y     =  4
-		@board = []
+		@x     =  @d
+		@y     =   4
 		@board = 8.times.map { Array.new(8, ".") }
 		mark
 	end
@@ -32,7 +31,22 @@ class ChessBoard
 		puts ("A".."H").to_a.join(" ")
 		@board.each_with_index { |line, i| puts "#{line.join(" ")} #{i}" }
 	end
+
+	def knight_walk
+		# BUILD TWO METHODS: 
+		# 	ONE FOR CHECKING BOUNDARIES
+		# 	THE OTHER FOR CHECKING FREE MOVES
+
+		if @board[@x+2][@y+2] != "o"
+			puts "julio"
+			@x += 2
+			@y += 2
+			mark
+		end
+	end
 end
 
 chess = ChessBoard.new
+chess.knight_walk
+# chess.knight_walk
 chess.show_board
