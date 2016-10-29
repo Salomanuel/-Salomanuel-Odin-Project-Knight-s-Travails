@@ -1,5 +1,16 @@
 class ChessBoard
 	def initialize
+		letters
+		@oldX  = nil
+		@oldY  = nil
+		@x = @d
+		@y =  4
+		@board = []
+		8.times { @board << Array.new(8, ".") }
+		mark
+	end
+
+	def letters
 		@a = 0
 		@b = 1
 		@c = 2
@@ -8,13 +19,6 @@ class ChessBoard
 		@f = 5
 		@g = 6
 		@h = 7
-		@oldX  = nil
-		@oldY  = nil
-		@x = @d
-		@y =  4
-		@board = []
-		8.times { @board << Array.new(8, ".") }
-		mark
 	end
 
 	def mark
