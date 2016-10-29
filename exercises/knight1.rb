@@ -3,10 +3,10 @@ class ChessBoard
 		letters
 		@oldX  = nil
 		@oldY  = nil
-		@x = @d
-		@y =  4
+		@x     = @d
+		@y     =  4
 		@board = []
-		8.times { @board << Array.new(8, ".") }
+		@board = 8.times.map { Array.new(8, ".") }
 		mark
 	end
 
