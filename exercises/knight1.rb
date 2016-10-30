@@ -1,30 +1,16 @@
 class ChessBoard
 	def initialize
-		letters
-		@oldX  = nil
-		@oldY  = nil
-		@x     =  @d
-		@y     =   4
 		@board = 8.times.map { Array.new(8, ".") }
-		mark
+		mark(3,4)
 	end
 
-	def letters
-		@a = 0
-		@b = 1
-		@c = 2
-		@d = 3
-		@e = 4
-		@f = 5
-		@g = 6
-		@h = 7
+	def letters(letter)
+		return ("a".."h").to_a.index(letter.downcase)
 	end
 
-	def mark
-		@board[@oldY][@oldX] = "o" if !@oldY.nil?
-		@board[@y][@x]       = "X"
-		@oldX = @x
-		@oldY = @y
+	def mark(x, y)
+		x = letters(x) if x.is_a?(String)
+		@board[y][x] = "X"
 	end
 
 	def show_board
@@ -54,6 +40,9 @@ class ChessBoard
 end
 
 chess = ChessBoard.new
-chess.knight_walk
 # chess.knight_walk
+# chess.knight_walk
+# puts chess.letters("E")
+chess.mark("E",5)
 chess.show_board
+
