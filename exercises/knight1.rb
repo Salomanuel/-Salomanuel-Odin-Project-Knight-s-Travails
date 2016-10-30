@@ -32,12 +32,19 @@ class ChessBoard
 		@board.each_with_index { |line, i| puts "#{line.join(" ")} #{i}" }
 	end
 
+	def check_validity
+		return false if @x > 7
+		return false if @y > 7
+		return false if @board[@x][@y] == "o"
+		return true
+	end
+
 	def knight_walk
 		# BUILD TWO METHODS: 
 		# 	ONE FOR CHECKING BOUNDARIES
 		# 	THE OTHER FOR CHECKING FREE MOVES
 
-		if @board[@x+2][@y+2] != "o"
+		if check_validity
 			puts "julio"
 			@x += 2
 			@y += 2
