@@ -1,16 +1,26 @@
 class ChessBoard
 	def initialize
-		@board = 8.times.map { Array.new(8, ".") }
-		mark(3,4)
+		@old_moves = []
+		@board 		 = 8.times.map { Array.new(8, ".") }
+		input(3,4)							# JUST TO CALL MARK
 	end
 
-	def letters(letter)
+	def input(x,y)						# handles old and new markings
+		x = letters(x) if x.is_a?(String)
+		if @old_moves.length > 0
+			old = @old_moves.last 
+			mark(old[0],old[1],true)
+		end
+		@old_moves << [x,y]
+		mark(x,y)
+	end
+
+	def letters(letter)				# WHEN SOME INPUT IS A LETTER
 		return ("a".."h").to_a.index(letter.downcase)
 	end
 
-	def mark(x, y)
-		x = letters(x) if x.is_a?(String)
-		@board[y][x] = "X"
+	def mark(x, y, old=false)	# DRAWS ON THE BOARD
+		old ? @board[y][x] = "o" :	@board[y][x] = "X" 
 	end
 
 	def show_board
@@ -18,12 +28,12 @@ class ChessBoard
 		@board.each_with_index { |line, i| puts "#{line.join(" ")} #{i}" }
 	end
 
-	def check_validity
-		return false if @x > 7
-		return false if @y > 7
-		return false if @board[@x][@y] == "o"
-		return true
-	end
+	# def check_validity
+	# 	return false if @x > 7
+	# 	return false if @y > 7
+	# 	return false if @board[@x][@y] == "o"
+	# 	return true
+	# end
 
 	def knight_walk
 		# BUILD TWO METHODS: 
@@ -43,6 +53,7 @@ chess = ChessBoard.new
 # chess.knight_walk
 # chess.knight_walk
 # puts chess.letters("E")
-chess.mark("E",5)
+chess.input("E",5)
+chess.input("F",6)
 chess.show_board
 
