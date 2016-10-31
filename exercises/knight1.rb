@@ -1,4 +1,5 @@
 class ChessBoard
+	# => board x and y are inverted
 	module Board
 		def create_board
 			@board 		 = 8.times.map { Array.new(8, ".") }
@@ -10,10 +11,17 @@ class ChessBoard
 
 		def show_board
 			puts ("A".."H").to_a.join(" ")
+			puts (0..7).to_a.join(" ")
 			@board.each_with_index { |line, i| puts "#{line.join(" ")} #{i}" }
 		end
 	end
 	module Input
+		def input(x,y)
+			x = letters(x) if x.is_a?(String)
+			mark(x,y)
+			@knight_position = [x,y]
+		end
+
 		def input(x,y)						# handles old and new markings
 			@old_moves ||= []
 			x = letters(x) if x.is_a?(String)
@@ -30,30 +38,39 @@ class ChessBoard
 		end
 	end
 	module Moves
-		def possible_moves
-		end
+	# 	def possible_moves(x,y,try=0)
+	# 		case try
+	# 		when 0 then return x+=1, y-=2	
+	# 		when 1 then return x+=2, y-=1
+	# 		when 2 then return x+=2, y+=1	
+	# 		when 3 then return x+=1, y+=2
+	# 		when 4 then return x-=1, y+=2	
+	# 		when 5 then return x-=2, y+=1	
+	# 		when 6 then return x-=2, y-=1
+	# 		when 7 then return x-=1, y-=2
+	# 		end
+	# 	end
 
-		def knight_walk
-			# BUILD TWO METHODS: 
-			# 	ONE FOR CHECKING BOUNDARIES
-			# 	THE OTHER FOR CHECKING FREE MOVES
+	# 	def knight_walk
+	# 		# puts "***#{@board[5][4]}"
+	# 		8.times do |i|
+	# 			puts possible_moves()
 
-			if check_validity
-				puts "julio"
-				@x += 2
-				@y += 2
-				mark
-			end
-		end
+	# 		end
+	# 		# BUILD TWO METHODS: 
+	# 		# 	ONE FOR CHECKING BOUNDARIES
+	# 		# 	THE OTHER FOR CHECKING FREE MOVES
 
-		def check_validity
-			return false if @x > 7
-			return false if @y > 7
-			return false if @board[@x][@y] == "o"
-			return true
-		end
+	# 	end
 
-	end
+	# 	def check_validity
+	# 		return false if @x > 7
+	# 		return false if @y > 7
+	# 		return false if @board[y][x] == "o"
+	# 		return true
+	# 	end
+
+	# end
 
 	include Board
 	include Input
@@ -61,6 +78,7 @@ class ChessBoard
 
 	def initialize
 		create_board
+		@knight_position = [4,3]
 		input(3,4)							# JUST TO CALL MARK
 	end
 
@@ -73,4 +91,5 @@ chess = ChessBoard.new
 chess.input("E",5)
 chess.input("F",6)
 chess.show_board
+chess.knight_walk
 
