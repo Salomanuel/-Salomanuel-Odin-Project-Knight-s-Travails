@@ -11,9 +11,22 @@ class Knight_Travels
 			@board.each_with_index { |line, i| puts "#{line.join(" ")} #{i}" }
 		end
 	end
+	module Moving
+		def move(x,y,trail=false)		# => CALLED BY KNIGHT_MOVES
+			trail ? @board[y][x] = "o" : @board[y][x] = "X"
+		end
+
+		def knight_moves(x,y)
+			kp = @knight_position
+			move(kp[0],kp[1],true)
+			@knight_position = [x,y]
+			move(x,y)
+		end
+	end
 
 
 	include Board
+	include Moving
 
 	def initialize
 		build_board
@@ -21,16 +34,7 @@ class Knight_Travels
 		# show_board
 	end
 
-	def move(x,y,trail=false)		# => CALLED BY KNIGHT_MOVES
-		trail ? @board[y][x] = "o" : @board[y][x] = "X"
-	end
 
-	def knight_moves(x,y)
-		kp = @knight_position
-		move(kp[0],kp[1],true)
-		@knight_position = [x,y]
-		move(x,y)
-	end
 
 
 
