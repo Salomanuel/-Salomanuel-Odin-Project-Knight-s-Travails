@@ -42,7 +42,7 @@ class Knight_Travels
 			8.times do |i|
 				# knight_moves(moves_range(@knight_position,i))
 				# knight_moves(moves_range([3,4],i))
-				# knight_moves([4,2])
+				knight_moves([4,2])
 			end
 		end
 	end
@@ -61,8 +61,9 @@ horse = Knight_Travels.new
 # horse.move(2,3,true)
 # horse.knight_moves(2,3)
 # horse.knight_moves(2,1)
-horse.knight_moves([2,1])
+# horse.knight_moves([2,1])
 # horse.move([2,3],true)
 
+horse.circle_run_test
+
 horse.show_board
-# horse.circle_run_test
