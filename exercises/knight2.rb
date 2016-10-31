@@ -23,8 +23,6 @@ class Knight_Travels
 			move(x,y)
 		end
 	end
-
-
 	include Board
 	include Moving
 
