@@ -29,37 +29,41 @@ class ChessBoard
 			return ("a".."h").to_a.index(letter.downcase)
 		end
 	end
+	module Moves
+		def possible_moves
+		end
+
+		def knight_walk
+			# BUILD TWO METHODS: 
+			# 	ONE FOR CHECKING BOUNDARIES
+			# 	THE OTHER FOR CHECKING FREE MOVES
+
+			if check_validity
+				puts "julio"
+				@x += 2
+				@y += 2
+				mark
+			end
+		end
+
+		def check_validity
+			return false if @x > 7
+			return false if @y > 7
+			return false if @board[@x][@y] == "o"
+			return true
+		end
+
+	end
+
 	include Board
 	include Input
+	include Moves
 
 	def initialize
 		create_board
 		input(3,4)							# JUST TO CALL MARK
 	end
 
-	
-
-	
-
-	# def check_validity
-	# 	return false if @x > 7
-	# 	return false if @y > 7
-	# 	return false if @board[@x][@y] == "o"
-	# 	return true
-	# end
-
-	def knight_walk
-		# BUILD TWO METHODS: 
-		# 	ONE FOR CHECKING BOUNDARIES
-		# 	THE OTHER FOR CHECKING FREE MOVES
-
-		if check_validity
-			puts "julio"
-			@x += 2
-			@y += 2
-			mark
-		end
-	end
 end
 
 chess = ChessBoard.new
