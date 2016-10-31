@@ -16,23 +16,23 @@ class Knight_Travels
 			trail ? @board[ary[1]][ary[0]] = "o" : @board[ary[1]][ary[0]] = "X"
 		end
 
-		def knight_moves(ary)
+		def knight_moves(ary)				# => calls move and handles the trail
 			kp = @knight_position
 			move(kp[0],kp[1],true)
-			@knight_position = ary
+			@knight_position = ary 		# => also updates @knight_position
 			move(ary[0],ary[1])
 		end
 
 		def moves_range(x,y,option)
 			case option
 				when 0 then return [x+=1, y-=2]
-				# when 1 then return (x+=2, y-=1)
-				# when 2 then return (x+=2, y+=1)
-				# when 3 then return (x+=1, y+=2)
-				# when 4 then return (x-=1, y+=2)
-				# when 5 then return (x-=2, y+=1)
-				# when 6 then return (x-=2, y-=1)
-				# when 7 then return (x-=1, y-=2)
+				when 1 then return [x+=2, y-=1]
+				when 2 then return [x+=2, y+=1]
+				when 3 then return [x+=1, y+=2]
+				when 4 then return [x-=1, y+=2]
+				when 5 then return [x-=2, y+=1]
+				when 6 then return [x-=2, y-=1]
+				when 7 then return [x-=1, y-=2]
 			end
 		end
 	end
@@ -42,7 +42,7 @@ class Knight_Travels
 	def initialize
 		build_board
 		@knight_position = [3,4]
-		move(@knight_position)
+		move(@knight_position)		# => the first time gets kickstarted to bypass the trail
 		# show_board
 	end
 
