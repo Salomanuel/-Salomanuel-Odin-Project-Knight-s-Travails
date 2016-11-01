@@ -6,18 +6,18 @@ class Knight_Travels
 		end
 
 		def show_board
-			puts (0..7).to_a.join(" ")
-			puts ("A".."H").to_a.join(" ")
-			@board.each_with_index { |line, i| puts "#{line.join(" ")} #{i}" }
+			puts (0..7).to_a.join("\t")
+			puts ("A".."H").to_a.join("\t")
+			@board.each_with_index { |line, i| puts "#{line.join("\t")} #{i} \n\n" }
 		end
 
 		def write_board(ary,trail=false)		# => CALLED BY KNIGHT_MOVES
-			trail ? @board[ary[1]][ary[0]] = "o" : @board[ary[1]][ary[0]] = "X"
+			# puts "#{ary.join(",")} turn: #{@turn}" if trail
+			trail ? @board[ary[1]][ary[0]] = @turn : @board[ary[1]][ary[0]] = "X"
+			@turn += 1 if trail
 		end
 	end
 	module Moving
-
-
 		def knight_moves(ary)				# => calls write_board and handles the trail
 			kp = @knight_position
 			write_board(kp,true)
@@ -49,21 +49,11 @@ class Knight_Travels
 		end
 					# => IMPLEMENT CIRCLE RUN TEST WITH IS VALID
 		def circle_run_test
-			# knight_moves([2,1])
-			# knight_moves([3,2])
-			# puts @knight_position.join(",")
-			# puts moves_range(@knight_position,7).join(",")
-			# puts @knight_position.join(",")
-			# knight_moves(moves_range(@knight_position,7))
-			# knight_moves(moves_range([3,4],7))
-			# knight_moves(moves_range(@knight_position,7))
-			8.times do |i|
+			2.times do |i|
 				move = moves_range(@knight_position,i)
 				if is_valid?(move)
 					knight_moves(move)
 				end
-				# knight_moves(moves_range([3,4],i))
-				# knight_moves([4,2])
 			end
 		end
 	end
@@ -71,10 +61,10 @@ class Knight_Travels
 	include Moving
 
 	def initialize
+		@turn = 0
 		build_board
 		@knight_position = [3,4]
 		write_board(@knight_position)		# => the first time gets kickstarted to bypass the trail
-		@turn = 0
 		# show_board
 	end
 end
