@@ -10,17 +10,19 @@ class Knight_Travels
 			puts ("A".."H").to_a.join(" ")
 			@board.each_with_index { |line, i| puts "#{line.join(" ")} #{i}" }
 		end
-	end
-	module Moving
-		def move(ary,trail=false)		# => CALLED BY KNIGHT_MOVES
+
+		def write_board(ary,trail=false)		# => CALLED BY KNIGHT_MOVES
 			trail ? @board[ary[1]][ary[0]] = "o" : @board[ary[1]][ary[0]] = "X"
 		end
+	end
+	module Moving
 
-		def knight_moves(ary)				# => calls move and handles the trail
+
+		def knight_moves(ary)				# => calls write_board and handles the trail
 			kp = @knight_position
-			move(kp,true)
+			write_board(kp,true)
 			@knight_position = ary 		# => also updates @knight_position
-			move(ary)
+			write_board(ary)
 		end
 
 		def moves_range(ary,option)
@@ -71,7 +73,7 @@ class Knight_Travels
 	def initialize
 		build_board
 		@knight_position = [3,4]
-		move(@knight_position)		# => the first time gets kickstarted to bypass the trail
+		write_board(@knight_position)		# => the first time gets kickstarted to bypass the trail
 		@turn = 0
 		# show_board
 	end
