@@ -49,7 +49,7 @@ class Knight_Travels
 		end
 					# => IMPLEMENT CIRCLE RUN TEST WITH IS VALID
 		def circle_run_test
-			2.times do |i|
+			3.times do |i|
 				move = moves_range(@knight_position,i)
 				if is_valid?(move)
 					knight_moves(move)
