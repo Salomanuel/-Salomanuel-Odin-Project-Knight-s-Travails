@@ -61,7 +61,7 @@ class Knight_Travels
 	include Moving
 
 	def initialize
-		@turn = 0
+		@turn = 1
 		build_board
 		@knight_position = [3,4]
 		write_board(@knight_position)		# => the first time gets kickstarted to bypass the trail
