@@ -79,4 +79,5 @@ horse = KnightTravels.new
 	# horse.knight_moves([4,2])
 	# horse.move([2,3],true)
 	# horse.circle_run_test
-horse.show_board
+# horse.show_board
+
