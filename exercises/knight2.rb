@@ -1,4 +1,4 @@
-class Knight_Travels
+class KnightTravels
 	# => X and Y are INVERTED: @board[y][x]
 
 	module Board 	# => graphics
@@ -70,7 +70,7 @@ class Knight_Travels
 	end
 end
 
-horse = Knight_Travels.new
+horse = KnightTravels.new
 # old tests
 	# horse.move(2,3,true)
 	# horse.knight_moves(2,3)
