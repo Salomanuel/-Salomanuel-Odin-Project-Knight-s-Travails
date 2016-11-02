@@ -20,7 +20,8 @@ module Moving # => mechanics
 	end
 
 	def is_valid?(ary) 					# => check if the move is valid, returns a boolean
-		if (ary[0] > 7) or (ary[1] > 7)
+		# if (ary[0] > 7) or (ary[1] > 7)
+		if !(0..7).include?(ary[0]) or !(0..7).include?(ary[1])
 			return false 
 		elsif @board[ary[1]][ary[0]] == "o"
 			return false 
