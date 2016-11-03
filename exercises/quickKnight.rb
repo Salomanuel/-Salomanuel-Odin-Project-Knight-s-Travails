@@ -7,14 +7,11 @@ module QuickKnight
 		end
 	end
 
-	def quickKnight(start,finish)
+	def quickKnight(start,finish) #it's a fake initialize
 		build_board  #temporary
 		@start   = start
 		@finish  = finish
 		@enders  = sons(@finish)
-		starters = sons(@start)
-		# starters.each{ |u| puts "#{u}" }
-		# @enders.each{ |u| puts "#{u}" }
 	end
 
 	def has_enders?(square)
@@ -51,6 +48,6 @@ quickKnight([2,3],[1,2]) # => this has just one move
 # starters = neighbors(@start)
 # enders = neighbors(@finish)
 # puts has_enders?([3,4])
-compare#(sons([2,3]))
+compare(sons([2,3]))
 
 #.each { |s| puts s.join(",") }
