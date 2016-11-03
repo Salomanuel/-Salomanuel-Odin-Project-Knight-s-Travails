@@ -1,24 +1,24 @@
 module QuickKnight
 
-	def sons(start_square)
+	def sons(start_square) 						# => returns a list of the valid submoves
 		8.times.map do |i| 
 			move = moves_range(start_square, i)
 			move if is_valid?(move)
 		end
 	end
 
-	def quickKnight(start,finish) #it's a fake initialize
+	def quickKnight(start,finish) 		# => it's a fake initialize
 		build_board  #temporary
 		@start   = start
 		@finish  = finish
 		@enders  = sons(@finish)
 	end
 
-	def has_enders?(square)
+	def has_enders?(square)  					# => checks if there are direct connection
 		@enders.include?(square)
 	end
 
-	def compare(squares=sons(@start))
+	def compare(squares=sons(@start)) # => calls the final string if finds direct connections
 		squares.each do |square| 
 			if has_enders?(square)
 				formatting_result(square) 
@@ -26,7 +26,7 @@ module QuickKnight
 		end
 	end
 
-	def formatting_result(square)
+	def formatting_result(square)			# => prints a nice strings with the result
 		puts "#{@start.join(",")} => #{square.join(",")} => #{@finish.join(",")}"
 	end
 
