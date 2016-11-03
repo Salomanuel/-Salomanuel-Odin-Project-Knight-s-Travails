@@ -1,6 +1,6 @@
 module QuickKnight
 
-	def neighbors(start_ary)
+	def sons(start_ary)
 		8.times.map do |i| 
 			move = moves_range(start_ary, i)
 			move if is_valid?(move)
@@ -11,14 +11,16 @@ module QuickKnight
 		build_board
 		@start   = start
 		@finish  = finish
-		starters = neighbors(@start)
-		enders   = neighbors(@finish)
-
-		starters.each{ |u| puts "#{u}" }
-		enders.each{ |u| puts "#{u}" }
+		@enders  = sons(@finish)
+		starters = sons(@start)
+		# starters.each{ |u| puts "#{u}" }
+		@enders.each{ |u| puts "#{u}" }
 	end
 
-	
+	def compare_arrays
+		# you can make this recursive
+	end
+			
 
 end
 require_relative "board"
