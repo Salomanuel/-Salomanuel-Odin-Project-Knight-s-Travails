@@ -11,18 +11,35 @@ class KnightTravels
 	include Routing # => path handling
 
 	def initialize
-		@turn = 1
+		@turn = 0
 		build_board
 		# @knight_position = [3,4]
 		# write_board(@knight_position)		# => the first time gets kickstarted to bypass the trail
 		# show_board
 	end
 
-	def win
-		puts "CULO"
+	def win(node)
+		@route = []
+
+		loop do
+			break if node.parent == nil
+			@route << node
+			node = node.parent
+		end
+		print "#{@start} => "
+		@route.reverse.each do |n| 
+			print "#{n.value} => " if n != @route.first
+			print "#{n.value}" 		 if n == @route.first
+			knight_moves(n.value)
+			write_board(@start,  "s")
+			write_board(@finish, "f")
+		end
+		puts
 	end
 
 	def game(start, finish)
+		@start  = start
+		@finish = finish
 		write_board(start,  "s")
 		write_board(finish, "f")
 		@knight_position = start

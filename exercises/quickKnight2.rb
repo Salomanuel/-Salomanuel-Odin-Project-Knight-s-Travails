@@ -1,9 +1,10 @@
 # => in Node, add error if the value is not a cell
 
-# require_relative "moving"
-# require_relative "board"
-# include Moving
-# include Board
+#test
+	# require_relative "moving"
+	# require_relative "board"
+	# include Moving
+	# include Board
 
 module Routing
 	class Node
@@ -16,7 +17,6 @@ module Routing
 	end
 
  def route(start,finish)
- 	puts "hi I'm route"
  	found 	 = false
  	@queue 	 = []
  	@current = Node.new(start)
@@ -29,7 +29,7 @@ module Routing
  			new_node = Node.new(route, @current)
  			@current.child << new_node
  			if route == finish	# => you can put @finish
- 				puts win					# => actually it's better to put @finishers
+ 				win(new_node)# => actually it's better to put @finishers
  				found = true
  				break
  			end
@@ -38,10 +38,11 @@ module Routing
  		break if found
  		@current = @queue.shift
 	end
-	puts @current.child.size
  end
 end
-# include Routing
 
-# route([4,4],[1,2]).each { |i| puts i.join(",")}
-# route([4,4],[1,2])#.each { |i| puts i.join(",")}
+
+
+# include Routing
+	# route([4,4],[1,2]).each { |i| puts i.join(",")}
+	# route([4,4],[1,2])#.each { |i| puts i.join(",")}

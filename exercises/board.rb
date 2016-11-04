@@ -12,7 +12,6 @@ module Board 	# => graphics
 	def write_board(ary,trail=nil)		# => CALLED BY KNIGHT_MOVES
 		# puts "#{ary.join(",")} turn: #{@turn}" if trail
 		# no trail = increasing turn number		
-		@turn += 1 if trail
 		case trail
 		when "p" then @board[ary[1]][ary[0]] = "X"
 		when "s" then @board[ary[1]][ary[0]] = "S"
