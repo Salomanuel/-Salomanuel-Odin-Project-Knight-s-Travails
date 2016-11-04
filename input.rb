@@ -1,10 +1,10 @@
 module Input
 
 	def kind_questions	
-			puts "Hello fellow mortal, write down the starting square"
-			start  = input
-			puts "Now just tell me the desired ending cell and we are done"
-			finish = input
+		puts "Hello fellow mortal, write down the starting square"
+		@start  = input
+		puts "Now just tell me the desired ending cell and we are done"
+		@finish = input
 	end
 
 	def input
@@ -14,7 +14,7 @@ module Input
 		output = []
 
 		if ("A".."H").include?(input[0].upcase)
-			output << input[0].upcase
+			output << letters_to_numbers(input[0].upcase)
 		else
 			puts error
 			self.input
@@ -27,7 +27,13 @@ module Input
 		end
 		return output
 	end
+
+	def letters_to_numbers(letter)
+		return ("A".."H").to_a.index(letter)
+	end
+
 end
 
 # include Input
-# kind_questions
+# puts kind_questions
+# # puts letters_to_numbers("H")
