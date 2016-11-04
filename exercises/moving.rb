@@ -1,9 +1,9 @@
 module Moving # => mechanics
 	def knight_moves(ary)				# => calls write_board and handles the trail
 		kp = @knight_position
-		write_board(kp,true)
+		write_board(kp)
 		@knight_position = ary 		# => also updates @knight_position
-		write_board(ary)
+		write_board(ary, 0)
 	end
 
 	def moves_range(ary,option) # => the whole range of possible moves (even not valid ones)
