@@ -12,12 +12,9 @@ class KnightTravels
 	def initialize
 		@turn = 0
 		build_board
-		# @knight_position = [3,4]
-		# write_board(@knight_position)		# => the first time gets kickstarted to bypass the trail
-		# show_board
 	end
 
-	def win(node)
+	def win(node)		# => presents the cells of path along with the visualization
 		@route = []
 
 		loop do
@@ -36,13 +33,14 @@ class KnightTravels
 		puts
 	end
 
-	def game(start, finish)
+	def game(start, finish) # => handles the game and calls many methods
 		@start  = start
 		@finish = finish
+		@knight_position = start
 		write_board(start,  "s")
 		write_board(finish, "f")
-		@knight_position = start
-		route(start,finish)
+		route(start,finish) 	# => pathfinding
+		show_board 						# => graphics
 	end
 
 	
@@ -60,5 +58,3 @@ horse = KnightTravels.new
 
 
 horse.game([4,4],[1,2])
-
-horse.show_board
