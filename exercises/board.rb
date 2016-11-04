@@ -9,9 +9,17 @@ module Board 	# => graphics
 		@board.each_with_index { |line, i| puts "#{line.join("\t")} #{i} \n\n" }
 	end
 
-	def write_board(ary,trail=false)		# => CALLED BY KNIGHT_MOVES
+	def write_board(ary,trail=nil)		# => CALLED BY KNIGHT_MOVES
 		# puts "#{ary.join(",")} turn: #{@turn}" if trail
-		trail ? @board[ary[1]][ary[0]] = @turn : @board[ary[1]][ary[0]] = "X"
+		# no trail = increasing turn number		
 		@turn += 1 if trail
+		case trail
+		when 0 then @board[ary[1]][ary[0]] = "X"
+		when 1 then @board[ary[1]][ary[0]] = "S"
+		when 2 then @board[ary[1]][ary[0]] = "F"
+		else
+			@board[ary[1]][ary[0]] = @turn
+			@turn += 1 if trail
+		end
 	end
 end
