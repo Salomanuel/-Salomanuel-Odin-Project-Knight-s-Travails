@@ -16,6 +16,10 @@ module Moving # => mechanics
 			when 5 then return [ary[0]-2, ary[1]+1]
 			when 6 then return [ary[0]-2, ary[1]-1]
 			when 7 then return [ary[0]-1, ary[1]-2]
+			when 9 
+			then return 8.times.map do |i| 
+				moves_range(ary,i) if is_valid?(moves_range(ary,i))
+			end.compact.sort
 		end
 	end
 
@@ -39,3 +43,16 @@ module Moving # => mechanics
 		end
 	end
 end
+
+
+# those things are only here for testing
+# they must be removed
+require_relative "board"
+include Moving
+include Board
+build_board
+# all_moves = 8.times.map { |i| moves_range([4,4],i) }
+# all_moves.each{ |i| puts i.join(",") }
+
+# moves_range([4,4],9).each{ |i| puts i.join(",") }
+# moves_range([1,2],9).each{ |i| puts i.join(",") }
