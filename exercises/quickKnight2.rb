@@ -1,8 +1,9 @@
-require_relative "moving"
-require_relative "board"
+# => in Node, add error if the value is not a cell
 
-include Moving
-include Board
+# require_relative "moving"
+# require_relative "board"
+# include Moving
+# include Board
 
 module Routing
 	class Node
@@ -15,33 +16,32 @@ module Routing
 	end
 
  def route(start,finish)
+ 	puts "hi I'm route"
  	found 	 = false
  	@queue 	 = []
  	@current = Node.new(start)
- 	counter = 0
 
  	loop do
+ 		sleep 0.05
+ 		# puts "#{@current.value.join(",")} vs #{finish.join(",")}"
  		@routes = moves_range(@current.value,9)
  		@routes.each do |route|
- 			new_node = Node.new(route,@current)
+ 			new_node = Node.new(route, @current)
  			@current.child << new_node
-
- 			counter += 1
- 			# if @board[route[1],route[0]] == "F"
- 			# 	win_method
- 			# 	found = true
- 			# 	break
- 			# end
+ 			if route == finish	# => you can put @finish
+ 				puts win					# => actually it's better to put @finishers
+ 				found = true
+ 				break
+ 			end
  			@queue << new_node
  		end
- 		# break if found
- 		break if counter >= 10
+ 		break if found
  		@current = @queue.shift
 	end
-	# puts @current.child.size
+	puts @current.child.size
  end
 end
-include Routing
+# include Routing
 
 # route([4,4],[1,2]).each { |i| puts i.join(",")}
-route([4,4],[1,2])#.each { |i| puts i.join(",")}
+# route([4,4],[1,2])#.each { |i| puts i.join(",")}
