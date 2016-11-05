@@ -33,10 +33,6 @@ class DamnHorse
 	end
 
 	module Moving
-		# def Initialize # => MOVING initialize
-		# 	super
-		# end
-
 		def valid_move?(cell)
 			x, y = cell[0], cell[1]
 			return false unless (0..7).include?(x) and (0..7).include?(y) 
@@ -119,8 +115,6 @@ class DamnHorse
 		draw_board(@start,  "S")
 		draw_board(@finish, "F")
 		
-		# moves_range(@start).each  { |node| draw_board(node, "X") }
-		# moves_range(@finish).each { |node| draw_board(node, "X") }
 		knight_moves(@start)
 		show_board
 	end
