@@ -15,9 +15,13 @@ class DamnHorse
 			@board.each_with_index { |line,i| puts "#{i} #{line.join(" ")}" }
 		end
 
-		def draw_board(cell=@start,type="S")
+		def draw_board(cell=@start,type=nil)
 			case type
 			when "S" then @board[cell[1]][cell[0]] = "S"
+			when "F" then @board[cell[1]][cell[0]] = "F"
+			when "X" then @board[cell[1]][cell[0]] = "X"
+			else
+										@board[cell[1]][cell[0]] = @turn
 			end
 		end
 	end
@@ -25,6 +29,7 @@ class DamnHorse
 	module Moving
 		def initialize
 			super
+			@turn = 1
 		end
 
 		def moves_range(cell)
