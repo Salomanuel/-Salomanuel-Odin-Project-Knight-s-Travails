@@ -4,6 +4,7 @@ class DamnHorse
 			super
 			create_board
 			show_board
+			@turn = 1
 		end
 
 		def create_board
@@ -14,6 +15,10 @@ class DamnHorse
 			puts "  #{("A".."H").to_a.join(" ")}"
 			puts "  #{(0..7).to_a.join(" ")}"
 			@board.each_with_index { |line,i| puts "#{i} #{line.join(" ")}" }
+		end
+
+		def board_query(cell)
+			return @board[cell[1]][cell[0]]
 		end
 
 		def draw_board(cell,type=nil)
@@ -28,10 +33,9 @@ class DamnHorse
 	end
 
 	module Moving
-		def Initialize # => MOVING initialize
-			super
-			@turn = 1
-		end
+		# def Initialize # => MOVING initialize
+		# 	super
+		# end
 
 		def valid_move?(cell)
 			x, y = cell[0], cell[1]
@@ -39,7 +43,7 @@ class DamnHorse
 			return true
 		end
 
-		def moves_range(cell)
+		def moves_range(cell) # returns only valid moves
 			x, y  = cell[0], cell[1]
 			range = []
 			8.times do |i|
@@ -67,9 +71,48 @@ class DamnHorse
 		end
 	end
 
+	module Path
+		class Node
+			attr_accessor :value, :child, :parent
+			def initialize(value)
+				@value = value
+				@child,@parent = nil
+			end
+		end
+
+		def initialize # => PATH initialize
+			super
+		end
+
+		def knight_moves(cell)
+			found    = false
+			@queue   = []
+			@current = Node.new(cell)
+
+			loop do
+				@sons = moves_range(@current.value)
+				@sons.each do |son|
+					new_node = Node.new(son)
+					@current.child  = new_node
+					new_node.parent = @current
+					if board_query(son) == "F"
+						# puts "win!"
+						win
+						found = true
+						break
+					end
+					@queue << new_node
+				end
+				@current = @queue.shift
+				break if found
+			end
+		end
+	end
+
 	include Board
 	include Moving
 	include Input
+	include Path
 
 	def initialize  # => MAIN initialize
 		super 				# => calls the initialize of the modules
@@ -77,11 +120,23 @@ class DamnHorse
 		draw_board(@finish, "F")
 		
 		# moves_range(@start).each  { |node| draw_board(node, "X") }
-		moves_range(@finish).each { |node| draw_board(node, "X") }
+		# moves_range(@finish).each { |node| draw_board(node, "X") }
+		knight_moves(@start)
 		show_board
+	end
+
+	def win
+		list = []
+		while @current.parent != nil
+			list << @current
+			@current = @current.parent
+		end
+		list.reverse.each do |node| 
+			puts node.value.join(",") 
+			draw_board(node.value)
+			@turn += 1
+		end
 	end
 end
 
 horse = DamnHorse.new
-
-# horse.draw_board
