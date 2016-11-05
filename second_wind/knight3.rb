@@ -1,6 +1,7 @@
 class DamnHorse
 	module Board
-		def initialize # => only called by super in initialize of the main class
+		def initialize # => BOARD INITIALIZE only called by super in initialize of the main class
+			super
 			create_board
 			show_board
 		end
@@ -15,7 +16,7 @@ class DamnHorse
 			@board.each_with_index { |line,i| puts "#{i} #{line.join(" ")}" }
 		end
 
-		def draw_board(cell=@start,type=nil)
+		def draw_board(cell,type=nil)
 			case type
 			when "S" then @board[cell[1]][cell[0]] = "S"
 			when "F" then @board[cell[1]][cell[0]] = "F"
@@ -27,21 +28,40 @@ class DamnHorse
 	end
 
 	module Moving
-		def initialize
+		def Initialize # => MOVING initialize
 			super
 			@turn = 1
 		end
 
-		def moves_range(cell)
-			#cell
+		def valid_move?(cell)
 		end
+
+		def moves_range(cell)
+			x, y  = cell[0], cell[1]
+			range = []
+			8.times do |i|
+				case i
+				when 0 then range << [x+1, y-2]
+				when 1 then range << [x+2, y-1]
+				when 2 then range << [x+2, y+1]
+				when 3 then range << [x+1, y+2]
+				when 4 then range << [x-1, y+2]
+				when 5 then range << [x-2, y+1]
+				when 6 then range << [x-2, y-1]
+				when 7 then range << [x-1, y-2]
+				end
+			end
+			return range
+		end
+
+		
 	end
 
 	module Input
-		def initialize
+		def initialize	# => Input Initialize
 			super
-			# @start  = [4,4]
-			@start =  [3,4] # => D4
+			@start  = [4,4]
+			# @start =  [3,4] # => D4
 			@finish = [1,2]
 		end
 	end
@@ -50,12 +70,15 @@ class DamnHorse
 	include Moving
 	include Input
 
-	def initialize
+	def initialize  # => MAIN initialize
 		super 				# => calls the initialize of the modules
+		draw_board(@start,  "S")
+		draw_board(@finish, "F")
+		show_board
+		moves_range(@start).each { |node| puts node.join(",")}
 	end
 end
 
 horse = DamnHorse.new
 
-horse.draw_board
-horse.show_board
+# horse.draw_board
