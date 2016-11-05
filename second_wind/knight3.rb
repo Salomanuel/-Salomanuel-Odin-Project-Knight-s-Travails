@@ -34,6 +34,9 @@ class DamnHorse
 		end
 
 		def valid_move?(cell)
+			x, y = cell[0], cell[1]
+			return false unless (0..7).include?(x) and (0..7).include?(y) 
+			return true
 		end
 
 		def moves_range(cell)
@@ -51,10 +54,8 @@ class DamnHorse
 				when 7 then range << [x-1, y-2]
 				end
 			end
-			return range
+			return range.each.map{ |c| c if valid_move?(c) }.compact
 		end
-
-		
 	end
 
 	module Input
@@ -74,8 +75,10 @@ class DamnHorse
 		super 				# => calls the initialize of the modules
 		draw_board(@start,  "S")
 		draw_board(@finish, "F")
+		
+		# moves_range(@start).each  { |node| draw_board(node, "X") }
+		moves_range(@finish).each { |node| draw_board(node, "X") }
 		show_board
-		moves_range(@start).each { |node| puts node.join(",")}
 	end
 end
 
