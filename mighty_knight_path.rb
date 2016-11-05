@@ -1,5 +1,3 @@
-# add interface
-
 class KnightTravels
 	# => X and Y are INVERTED: @board[y][x]
 	require_relative "board"
