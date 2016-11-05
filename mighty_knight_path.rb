@@ -5,13 +5,18 @@ class KnightTravels
 	require_relative "board"
 	require_relative "moving"
 	require_relative "pathfinder"
+	require_relative "input"
 	include Board 	# => graphics
 	include Moving 	# => mechanics
 	include Routing # => path handling
+	include Input
 
 	def initialize
 		@turn = 0
 		build_board
+		show_board
+		kind_questions
+		game
 	end
 
 	def win(node)		# => presents the cells of path along with the visualization
@@ -33,13 +38,12 @@ class KnightTravels
 		puts
 	end
 
-	def game(start, finish) # => handles the game and calls many methods
-		@start  = start
-		@finish = finish
-		@knight_position = start
-		write_board(start,  "s")
-		write_board(finish, "f")
-		route(start,finish) 	# => pathfinding
+	def game			  # => handles the game and calls many methods		
+		@knight_position = @start
+		write_board(@start,  "s")
+		write_board(@finish, "f")
+		puts "\n"*10
+		route(@start,@finish) # => pathfinding	
 		show_board 						# => graphics
 	end
 
@@ -57,4 +61,4 @@ horse = KnightTravels.new
 	# horse.circle_run_test
 
 
-horse.game([4,4],[1,2])
+# horse.game([4,4],[1,2])

@@ -6,7 +6,6 @@ module Input
 		@start = get_input
 		puts "\tNow just tell me the desired ending cell\n\tand we are done"
 		@finish = get_input
-		puts "#{@start} #{@finish}"
 	end
 
 	def get_input(mistake=false)	
@@ -17,7 +16,7 @@ module Input
 		input  = gets.chomp.upcase
 		
 		if input =~ /[A-H][0-7]/ 
-			output << input[0].upcase
+			output << letters_to_numbers(input[0].upcase)
 			output << input[1].to_i
 			return output
 		end

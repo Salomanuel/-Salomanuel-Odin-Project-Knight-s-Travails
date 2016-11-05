@@ -22,7 +22,7 @@ module Routing
  	@current = Node.new(start)
 
  	loop do
- 		sleep 0.05
+ 		# sleep 0.05
  		# puts "#{@current.value.join(",")} vs #{finish.join(",")}"
  		@routes = moves_range(@current.value,9)
  		@routes.each do |route|
