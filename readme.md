@@ -12,7 +12,7 @@ A knight in chess can move to any square on the standard 8x8 chess board from an
 All the possible places you can end up after one move look like this:
 ![image of knight's moves](blob:http://www.theodinproject.com/0b72a7f4-9c38-43e5-857e-5259fa8a1fcd "knight's moves") ([link](blob:http://www.theodinproject.com/0b72a7f4-9c38-43e5-857e-5259fa8a1fcd "knight's moves"))
 
-###Your Task
+### Your Task
 
 Your task is to build a function `knight_moves` that shows the simplest possible way to get from one square to another by outputting all squares the knight will stop on along the way.
 
